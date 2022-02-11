@@ -5,7 +5,7 @@ class Config():
     def __init__(self):
         # file paths: they are in reference to the game root foolder
         self.img_path = 'img'
-        self.snd_path = 'other_snd_path'
+        self.snd_path = 'snd'
         self.music_path = 'snd/music'
         self.scoreboard_path = 'scoreboard.csv'
 

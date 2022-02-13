@@ -11,6 +11,7 @@ class Config():
 
         # graphics config
         self.resolution = (640, 480)
+        self.rescaleable = True
         self.fullscreen = False
         self.vsync = True
 

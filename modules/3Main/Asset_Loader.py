@@ -75,11 +75,12 @@ class Snd_Loader():
 
         # failed to load sound, return generic sound
         else:
+
             no_sound_path = Path(__file__).parent / "snd" / "no_sound.wav"
             return pg.mixer.Sound(no_sound_path.as_posix())
 
     def load(self, snd_name):
-        snd_path = Path(self.game.config.snd_path)
+        snd_path = Path(__file__).parent / self.game.config.snd_path
         # iterate through all files in snd_path
         for file_path in snd_path.glob("*"):
             if file_path.name.startswith(snd_name):

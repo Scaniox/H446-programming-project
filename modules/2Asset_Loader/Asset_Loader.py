@@ -15,7 +15,7 @@ class Img_Loader():
             file_name = file_path.as_posix()
             if file_name.endswith(".xml"):
                 # create a sprite sheet object for each xml file in img_path
-                self.sprite_sheets.append(Sprite_Sheet(file_name[:-4]))
+                self.sprite_sheets.append(Sprite_Sheet(game, file_name[:-4]))
 
     def get(self, img_name):
         image = False
@@ -47,8 +47,10 @@ class Img_Loader():
     def load(self, img_name):
         # search img_path for images
         img_path = Path(self.game.config.img_path)
+        # iterate through files in img_path
         for file_path in img_path.glob("*"):
             if file_path.name.startswith(img_name):
+                # if the names match, load image and return it
                 image = pg.image.load(file_path.as_posix()).convert_alpha()
                 return image
 
@@ -73,13 +75,15 @@ class Snd_Loader():
 
         # failed to load sound, return generic sound
         else:
-            no_sound_path = Path(__file__).parent() / "no_sound.wav"
+            no_sound_path = Path(__file__).parent / "snd" / "no_sound.wav"
             return pg.mixer.Sound(no_sound_path.as_posix())
 
     def load(self, snd_name):
         snd_path = Path(self.game.config.snd_path)
+        # iterate through all files in snd_path
         for file_path in snd_path.glob("*"):
             if file_path.name.startswith(snd_name):
+                # return the sound if it has the correct name
                 return pg.mixer.Sound(file_path.as_posix())
 
 
@@ -100,11 +104,15 @@ class Sprite_Sheet():
             self.load_xml(xml_path)
 
     def load_xml(self, xml_path):
+        # load xml tree
         xml_tree_root = ET.parse(xml_path.as_posix()).getroot()
+        # iterate through entries in the xml file
         for entry in xml_tree_root:
+            # extract name and rect 
             attributes = entry.attrib
             name = attributes["name"]
             rect = [int(attributes[i]) for i in ["x", "y", "width", "height"]]
+            # store to sprite_coords
             self.sprite_coords[name] = rect
 
 
@@ -115,6 +123,8 @@ class Sprite_Sheet():
             rect = self.sprite_coords[sprite_name]
             # gain the sprite surface
             image = self.img.subsurface(rect)
+            image_copy = pg.surface.Surface(image.get_size())
+            image_copy.blit(image, (0,0))
             return image
             
         # no sprite found

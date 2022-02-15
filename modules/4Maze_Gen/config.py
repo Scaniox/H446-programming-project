@@ -14,6 +14,12 @@ class Config():
         self.rescaleable = True
         self.fullscreen = False
         self.vsync = True
+        self.colours = [(0xAC, 0x32, 0x32),
+                        (0xDF, 0x71, 0x26),
+                        (0x99, 0XE5, 0X50),
+                        (0X5B, 0X6E, 0XE1),
+                        (0X76, 0X42, 0X8A),
+                        (0XD9, 0X57, 0x63)]
 
         # volumes
         self.game_vol = 1.0
@@ -39,6 +45,8 @@ class Config():
         self.maze_key_count = 6
         self.maze_checkpoint_count = 10
         self.maze_enemy_count = 4
+        self.walls_width_px = 16
+        self.walls_height_px = 24
 
     # self modifying code: save the attributes  by rewriting this file
     def save(self):

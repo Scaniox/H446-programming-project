@@ -2,6 +2,7 @@ import pygame as pg
 import config as cfg
 import Maze_Gen as MG
 
+
 class Game():
     def __init__(self):
         pg.init()
@@ -20,9 +21,11 @@ class Game():
         for row in self.maze.board:
             print(f"{row}\n")
 
-        while True:
-            self.maze.all_sprites.draw(self.screen)
+        self.screen.fill((255,255,255))
+        self.maze.all_sprites.draw(self.screen)
+        pg.display.flip()
 
+        while True:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()

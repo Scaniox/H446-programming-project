@@ -10,7 +10,7 @@ class Config():
         self.scoreboard_path = 'scoreboard.csv'
 
         # graphics config
-        self.resolution = (640, 480)
+        self.resolution = (800, 800)
         self.rescaleable = True
         self.fullscreen = False
         self.vsync = True

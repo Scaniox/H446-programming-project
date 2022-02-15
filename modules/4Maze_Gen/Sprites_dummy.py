@@ -15,12 +15,12 @@ class Wall(Parent):
         super().__init__(game, start_pos)
 
 class Gateway(Parent):
-    def __init__(self, game, start_pos):
+    def __init__(self, game, start_pos, colour):
         self.colour = (0,0,192)
         super().__init__(game, start_pos)
 
 class Block(Parent):
-    def __init__(self, game, start_pos):
+    def __init__(self, game, start_pos, colour):
         self.colour = (0,192,0)
         super().__init__(game, start_pos)
 
@@ -32,6 +32,11 @@ class Enemy(Parent):
 class Checkpoint(Parent):
     def __init__(self, game, start_pos):
         self.colour = (128,128,0)
+        super().__init__(game, start_pos)
+
+class Key(Parent):
+    def __init__(self, game, start_pos):
+        self.colour = (128,128,128)
         super().__init__(game, start_pos)
 
 class Exit(Parent):

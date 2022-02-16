@@ -1,8 +1,0 @@
-<TextureAtlas ImagePath="gateways.png">
-    <Subtexture name="gateway_red" x="0" y="0" width="16" height="24" />
-    <Subtexture name="gateway_orange" x="16" y="0" width="16" height="24" />
-    <Subtexture name="gateway_green" x="32" y="0" width="16" height="24" />
-    <Subtexture name="gateway_blue" x="48" y="0" width="16" height="24" />
-    <Subtexture name="gateway_purple" x="64" y="0" width="16" height="24" />
-    <Subtexture name="gateway_pink" x="80" y="0" width="16" height="24" />
-</TextureAtlas>

@@ -1,0 +1,16 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python: maze gen host",
+            "type": "python",
+            "request": "launch",
+            "program": "C:\\Users\\alexl\\school\\A Levels\\Computer Science\\H446-programming-project\\modules\\4Maze_Gen\\Maze_Gen_Host.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}

@@ -1,5 +1,13 @@
 import pygame as pg
 
+colours = [(0xAC, 0x32, 0x32),
+            (0xDF, 0x71, 0x26),
+            (0x99, 0XE5, 0X50),
+            (0X00, 0X50, 0xEF),
+            (0X76, 0X42, 0X8A),
+            (0X00, 0XCC, 0XCC)]
+
+
 class Parent(pg.sprite.Sprite):
     def __init__(self, game, start_pos):
         super().__init__()
@@ -16,12 +24,12 @@ class Wall(Parent):
 
 class Gateway(Parent):
     def __init__(self, game, start_pos, colour):
-        self.colour = (0,0,192)
+        self.colour = [round(i) for i in colours[colour]]
         super().__init__(game, start_pos)
 
 class Block(Parent):
     def __init__(self, game, start_pos, colour):
-        self.colour = (0,192,0)
+        self.colour = [round(i*0.6) for i in colours[colour]]
         super().__init__(game, start_pos)
 
 class Enemy(Parent):

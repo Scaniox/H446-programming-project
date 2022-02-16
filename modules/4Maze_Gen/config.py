@@ -17,9 +17,9 @@ class Config():
         self.colours = [(0xAC, 0x32, 0x32),
                         (0xDF, 0x71, 0x26),
                         (0x99, 0XE5, 0X50),
-                        (0X5B, 0X6E, 0XE1),
+                        (0X00, 0X50, 0xEF),
                         (0X76, 0X42, 0X8A),
-                        (0XD9, 0X57, 0x63)]
+                        (0X00, 0XCC, 0XCC)]
 
         # volumes
         self.game_vol = 1.0
@@ -39,11 +39,11 @@ class Config():
         # maze generation
         self.maze_blocks_start_proportion = 0.08333333333333333
         self.maze_blocks_distance_proportion = 0.16666666666666666
-        self.maze_gateway_jitter = 6
-        self.maze_gateway_skip_threshold = 0.3
-        self.maze_branch_stop_threshold = 0.1
+        self.maze_gateway_jitter = 0
+        self.maze_gateway_skip_threshold = 0
+        self.maze_branch_stop_threshold = 0.05
         self.maze_key_count = 6
-        self.maze_checkpoint_count = 10
+        self.maze_checkpoint_count = 5
         self.maze_enemy_count = 4
         self.walls_width_px = 16
         self.walls_height_px = 24

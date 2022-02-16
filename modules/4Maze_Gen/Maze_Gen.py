@@ -50,13 +50,17 @@ class Maze():
                  for x in range(0, self.msize[0])) 
                  for y in range(0, self.msize[1])]
 
-        # generate list of all unchecked walls
+        # generate list of all unchecked walls bellow
         unchecked_walls = []
         # - 1 stops it from checking bottom most walls
         for y in range(0, self.msize[1]-1):
-            # - 1 stops it from checking right most walls
-            for x in range(0, self.msize[0] - 1):
+            for x in range(0, self.msize[0]):
                 unchecked_walls.append([x,y,0])
+
+        # generate a list of unchecked walls on right
+        for y in range(0, self.msize[1]):
+            # - 1 stops it from checking right most walls
+            for x in range(0, self.msize[0]-1):
                 unchecked_walls.append([x,y,1])
 
         # iterate over all walls randomly, removing them if possible
@@ -71,10 +75,14 @@ class Maze():
 
                 # check if this wall merges zones
                 if zone1 != zone2:
-                    print(zone1, zone2)
                     # delete this wall
                     layout[y][x][1] = False
-                    layout[y][x+1][2] = zone1
+
+                    # merge zones
+                    for row in layout:
+                        for node in row:
+                            if node[2] == zone2:
+                                node[2] = zone1
 
             else:  # is up down wall
                 zone1 = layout[y][x][2]
@@ -82,10 +90,14 @@ class Maze():
 
                 # check if this wall merges zones
                 if zone1 != zone2:
-                    print(zone1, zone2)
                     # delete this wall
                     layout[y][x][0] = False
-                    layout[y+1][x][2] = zone1
+
+                    # merge zones
+                    for row in layout:
+                        for node in row:
+                            if node[2] == zone2:
+                                node[2] = zone1
 
             # remove wall from unchecked walls
             unchecked_walls.remove(wall)
@@ -119,21 +131,28 @@ class Maze():
             board[y][bsize[0]-1] = wall_gen_group((bsize[0]-1, y))
         board[bsize[1]-2][0] = wall_gen_group((0, bsize[1]-2))
 
-        # place corner sprites on board
+        #place corner sprites on board
         for y in range(2, bsize[1], 2):
             for x in range(2, bsize[0], 2):
                 board[y][x] = wall_gen_group((x,y))
 
-        # place edge sprites on board
+        # place edge horizontal edge sprites on board
         for ly in range(self.msize[1]-1):
-            for lx in range(self.msize[0]-1):
+            for lx in range(self.msize[0]):
                 by = 2*ly + 1
                 bx = 2*lx + 1
 
                 if self.layout[ly][lx][0]: # wall bellow
                     board[by+1][bx] = wall_gen_group((bx, by+1))
+
+        # place vertical edge sprites on board
+        for ly in range(self.msize[1]):
+            for lx in range(self.msize[0]-1):
+                by = 2*ly + 1
+                bx = 2*lx + 1
+
                 if self.layout[ly][lx][1]: # wall right
-                    board[by][bx+1] = wall_gen_group((bx, by+1))
+                    board[by][bx+1] = wall_gen_group((bx+1, by))
 
         self.board = board
 
@@ -174,16 +193,18 @@ class Maze():
 
             block_pos = self.pos_convert(branch_node)
             block = Sprites.Block(self.game, block_pos, block_colour)
+            self.board[branch_node[1]][branch_node[0]] = block
             self.all_sprites.add(block)
             self.blocks.add(block)
 
             # conditionally set gateway to next node along path
-            if rng.random() < self.game.config.maze_gateway_skip_threshold:
+            if rng.random() > self.game.config.maze_gateway_skip_threshold:
                 gateway_colour = rng.choice(allowed_colours)
                 allowed_colours.remove(gateway_colour)
 
                 gw_pos = self.pos_convert(next_node)
                 gateway = Sprites.Gateway(self.game, gw_pos, gateway_colour)
+                self.board[next_node[1]][next_node[0]] = gateway
                 self.all_sprites.add(gateway)
                 self.gateways.add(gateway)
 
@@ -201,6 +222,7 @@ class Maze():
                 pos = self.random_board_spot()
 
             key = Sprites.Key(self.game, self.pos_convert(pos))
+            self.board[pos[1]][pos[0]] = key
             self.all_sprites.add(key)
             self.keys.add(key)
 
@@ -211,6 +233,7 @@ class Maze():
                 pos = self.random_board_spot()
 
             checkpoint = Sprites.Checkpoint(self.game, self.pos_convert(pos))
+            self.board[pos[1]][pos[0]] = checkpoint
             self.all_sprites.add(checkpoint)
             self.checkpoints.add(checkpoint)
 
@@ -220,7 +243,8 @@ class Maze():
             while self.board[pos[1]][pos[0]] != False:
                 pos = self.random_board_spot()
 
-            enemy = Sprites.Checkpoint(self.game, self.pos_convert(pos))
+            enemy = Sprites.Enemy(self.game, self.pos_convert(pos))
+            self.board[pos[1]][pos[0]] = enemy
             self.all_sprites.add(enemy)
             self.enemies.add(enemy)
 
@@ -269,6 +293,7 @@ class Maze():
 
             for offset in [(0,-1), (0,1), (1,0), (-1,0)]:
                 neighbour = [current_node_pos[i] + offset[i] for i in (0,1)]
+                neighbour = tuple(neighbour)
                 # check neighbour is a wall
                 if self.board[neighbour[1]][neighbour[0]] != False:
                     continue
@@ -278,10 +303,10 @@ class Maze():
                     continue
 
                 # new node; add to known nodes and append to nodes_to_search
-                known_nodes.append(current_node_pos)
+                known_nodes.append(neighbour)
                 nodes_to_search.append(neighbour)
 
-            if rng.random() > self.game.config.maze_branch_stop_threshold:
+            if rng.random() < self.game.config.maze_branch_stop_threshold:
                 break
 
         return current_node_pos

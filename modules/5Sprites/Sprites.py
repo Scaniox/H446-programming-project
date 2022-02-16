@@ -43,7 +43,60 @@ class Renderable_Sprite(pg.sprite.Sprite):
 
 class Player(Renderable_Sprite):
     def _init__(self, game, start_pos):
+        # call parent constructor
         super().__init__(game, start_pos, 0)
+
+        self.colour = game.config.colours[0]
+        # set health
+        self.health = game.config.player_max_health
+        # set hurt cooldown
+        self.hurt_cooldown = game.config.player_hurt_cooldown
+
+        # kinematics
+        self.vel = (0, 0)
+        # set max speed 
+        self.max_speed = game.config.player_max_speed
+        # set acc
+        self.acc = game.config.player_acc
+        
+        # animations
+        self.animation_state = "standing"
+        # load animation frames
+        self.standing_imgs = 
+
+        self.walking_imgs = 
+
+        # set up other mechanics
+        self.inventory = [False, False]
+        self.keys = 0
+        self.last_checkpoint = False
+
+    def update(self, dt):
+        # acceleration due to wasd
+        keys = pg.key.get_pressed()
+        walking = False
+        if keys[pg.K_LEFT] or keys[pg.K_a]:
+            # acc left
+            self.vel[0] -= self.acc
+            walking = True
+        elif keys[pg.K_RIGHT] or keys[pg.K_d]:
+            # acc right
+            self.vel[0] += self.acc
+            walking = True
+        
+        if keys[pg.K_UP] or keys[pg.K_w]:
+            # acc up
+            self.vel[1] -= self.acc
+            walking = True
+        elif keys[pg.K_DOWN] or keys[pg.K_s]:
+            # acc down
+            self.vel[1] += self.acc
+            walking = True
+
+        if not walking:
+            speed = max((self.vel[0]**2 + self.vel[1]**2)**(1/2), 1e-15)
+            self.vel -= [ self.acc * self.vel[i]/speed  for i in (0,1)]
+        
 
 class Enemy(Renderable_Sprite):
     def __init__(self, game, start_pos):

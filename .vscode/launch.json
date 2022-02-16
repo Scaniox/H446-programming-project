@@ -6,10 +6,10 @@
     "configurations": [
 
         {
-            "name": "Python: maze gen host",
+            "name": "Python: sprites host",
             "type": "python",
             "request": "launch",
-            "program": "C:\\Users\\alexl\\school\\A Levels\\Computer Science\\H446-programming-project\\modules\\4Maze_Gen\\Maze_Gen_Host.py",
+            "program": "C:\\Users\\alexl\\school\\computer science\\H446-programming-project\\modules\\5Sprites\\Sprites.py",
             "console": "integratedTerminal"
         }
     ]

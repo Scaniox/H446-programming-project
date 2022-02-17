@@ -5,11 +5,20 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "name": "Python: sprites host",
             "type": "python",
             "request": "launch",
             "program": "C:\\Users\\alexl\\school\\computer science\\H446-programming-project\\modules\\5Sprites\\Sprites.py",
+            "console": "integratedTerminal"
+        }
+
+        {
+            "name": "Python: current file",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
             "console": "integratedTerminal"
         }
     ]

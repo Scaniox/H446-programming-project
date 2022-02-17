@@ -70,6 +70,9 @@ class Player(Renderable_Sprite):
 
         # sounds
         self.key_collect_snd = self.game.snd_loader.get("key collect.wav")
+        self.block_collect_snd = self.game.snd_loader.get("block collect.wav")
+        self.block_place_snd = self.game.snd_loader.get("block place.wav")
+        self.respawn_snd = self.game.snd_loader.get("respawn.wav")
 
         # set up other mechanics
         self.inventory = [False, False]
@@ -135,11 +138,99 @@ class Player(Renderable_Sprite):
         if self.health == 0:
             self.respawn()
 
+    def get_facing_offset(self):
+        """returns if the block """
+        if 45 <= self.rot % 360 < 135:
+            return vec2(1,0)
+        elif 135 <= self.rot % 360 < 225:
+            return vec2(0,1)
+        elif 225 <= self.rot % 360 < 315:
+            return vec2(-1,0)
+        else:
+            return vec2(0,-1)
+
     def pick_up(self, slot_index):
         """picks up block in front of the player and stores in inventory"""
+        # slot is already full
+        if self.inventory[slot_index]:
+            return
 
+        # find block in front of the player
+        facing_pos = self.pos + self.get_facing_offset()
+        facing_sprite = self.game.maze.level.board[facing_pos[1]][facing_pos[0]]
 
+        # check if it is a block
+        if type(facing_sprite) == "Block":
+            # store this block to inventory
+            self.inventory[slot_index] = facing_sprite
+
+            # remove this block from board
+            self.game.level.maze.board[facing_pos[1]][facing_pos[0]] = False
+
+            # remove block from all sprites and blocks
+            self.game.level.maze.blocks.remove(facing_sprite)
+            self.game.level.maze.all_sprites.remove(facing_sprite)
+
+            # play block collection sound
+            self.block_collect_snd.play()
+    
+    def place(self, slot_index):
+        """places a block in front of the player from inventory slot"""
+        # nothing to place
+        if self.inventory[slot_index] == False:
+            return
+            
+        # find block in front of the player
+        facing_pos = self.pos + self.get_facing_offset()
+        facing_sprite = self.game.level.maze.board[facing_pos[1]][facing_pos[0]]
         
+        # ensure the space is free
+        if facing_sprite == False:
+            # remove block from inventory
+            block = self.inventory[slot_index]
+            self.inventory[slot_index] = False
+            
+            # set block's new position
+            block.pos = facing_pos
+
+            # store block in inventory there
+            self.game.level.maze.board[facing_pos[1]][facing_pos[0]] = block
+
+            # add block to all sprites and blocks
+            self.game.level.maze.all_sprites.add(block)
+            self.game.level.maze.blocks.add(block)
+
+            # play placing sound
+            self.block_place_snd.play()
+
+    def respawn(self):
+        """respawns the player at the correct location when they die"""
+        # play respawn sound
+        self.respawn_snd.play()
+
+        # set health to player max health
+        self.health = self.game.config.player_max_health
+
+        if self.last_checkpoint != False:
+            self.pos = self.last_checkpoint.pos
+        else:
+            self.pos = self.game.level.maze.start
+
+    def collide(self):
+        """checks if the player is colliding with any walls and stops them
+            moving through them"""
+
+        hits = pg.sprite.spritecollide(self, 
+                                       self.game.level.maze.walls,
+                                       False)
+        hits += pg.sprite.spritecollide(self, 
+                                        self.game.level.maze.checkpoints,
+                                        False)
+
+        for hit in hits:
+            hit_pos = hit.pos
+            hit_offset = 
+
 
 class Enemy(Renderable_Sprite):
     def __init__(self, game, start_pos):

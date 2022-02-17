@@ -11,7 +11,7 @@ class Game():
 
         self.screen = pg.display.set_mode(self.config.resolution)
 
-        self.maze = MG.Maze(self, (20,10), 123456)#random.randint(0, 10000))
+        self.maze = MG.Maze(self, (20,10), random.randint(0, 10000))
 
         print(f"maze layout:")
         for row in self.maze.layout:

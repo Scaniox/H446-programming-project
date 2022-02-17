@@ -155,6 +155,7 @@ class Maze():
                     board[by][bx+1] = wall_gen_group((bx+1, by))
 
         self.board = board
+        self.bsize = bsize
 
         # generate start
         self.start = [1, 1]

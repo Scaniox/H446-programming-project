@@ -20,6 +20,7 @@ class Config():
                         (0X00, 0X50, 0xEF),
                         (0X76, 0X42, 0X8A),
                         (0X00, 0XCC, 0XCC)]
+        self.camera_zoom = 100
 
         # volumes
         self.game_vol = 1.0

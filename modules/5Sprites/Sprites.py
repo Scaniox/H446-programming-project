@@ -1,6 +1,8 @@
 from tracemalloc import start
 import pygame as pg
 
+vec2 = pg.math.Vector2
+
 
 class Renderable_Sprite(pg.sprite.Sprite):
     def __init__(self, game, start_pos=(0,0), start_rot=0):
@@ -9,7 +11,7 @@ class Renderable_Sprite(pg.sprite.Sprite):
         # initialise 
         self.game = game
         self.camera = self.game.level.camera
-        self.pos = start_pos
+        self.pos = vec2(start_pos)
         self.rot = start_rot
 
         # animations:
@@ -53,7 +55,7 @@ class Player(Renderable_Sprite):
         self.hurt_cooldown = game.config.player_hurt_cooldown
 
         # kinematics
-        self.vel = (0, 0)
+        self.vel = vec2(0,0)
         # set max speed 
         self.max_speed = game.config.player_max_speed
         # set acc
@@ -66,6 +68,9 @@ class Player(Renderable_Sprite):
 
         self.walking_imgs = 
 
+        # sounds
+        self.key_collect_snd = self.game.snd_loader.get("key collect.wav")
+
         # set up other mechanics
         self.inventory = [False, False]
         self.keys = 0
@@ -77,25 +82,63 @@ class Player(Renderable_Sprite):
         walking = False
         if keys[pg.K_LEFT] or keys[pg.K_a]:
             # acc left
-            self.vel[0] -= self.acc
+            self.vel.x -= self.acc
             walking = True
         elif keys[pg.K_RIGHT] or keys[pg.K_d]:
             # acc right
-            self.vel[0] += self.acc
+            self.vel.x += self.acc
             walking = True
         
         if keys[pg.K_UP] or keys[pg.K_w]:
             # acc up
-            self.vel[1] -= self.acc
+            self.vel.y -= self.acc
             walking = True
         elif keys[pg.K_DOWN] or keys[pg.K_s]:
             # acc down
-            self.vel[1] += self.acc
+            self.vel.y += self.acc
             walking = True
 
+        # enforce max speed
+        self.vel = [min(max(-self.max_speed, self.vel[i]), self.max_speed) \
+                    for i in (0,1)]
+
+        # decelerate back to vel = 0 if not walking
         if not walking:
-            speed = max((self.vel[0]**2 + self.vel[1]**2)**(1/2), 1e-15)
-            self.vel -= [ self.acc * self.vel[i]/speed  for i in (0,1)]
+            speed = max(self.vel.length, 1e-15)
+            self.vel -= [ min(self.acc * self.vel[i]/speed, self.vel[i])
+                          for i in (0,1)]
+
+        # block picking and placing
+        slot_keys = [keys[pg.K_q], keys[pg.K_e]]
+        for slot_index in (0,1):
+            if slot_keys[slot_index]:
+                # if the slot is empty, pick up
+                if self.inventory[slot_index] == False:
+                    self.pick_up(slot_index)
+                # if slot is full, place
+                else:
+                    self.place(slot_index)
+
+        # collisions with keys
+        hits = pg.sprite.spritecollide(self, self.game.level.maze.keys, True)
+        self.keys += len(hits)
+        if len(hits):
+            self.key_collect_snd.play()
+
+        # update rot based on movement
+        self.rot = self.vel.angle_to(vec2(0,1))
+
+        # collide with walls
+        self.collide()
+
+        # respawn
+        if self.health == 0:
+            self.respawn()
+
+    def pick_up(self, slot_index):
+        """picks up block in front of the player and stores in inventory"""
+
+
         
 
 class Enemy(Renderable_Sprite):
@@ -141,29 +184,36 @@ class Exit(Renderable_Sprite):
 
 class Camera():
     def __init__(self, game, target):
-        self.pos = (0,0) # this location is the centre of the screen
+        self.pos = vec2(0,0) # this location is the centre of the screen
         self.target = target
+        self.zoom = self.game.config.camera_zoom
     
     def update(self, dt):
         """updates the position of the camera so that it tracks the player"""
 
-        target_pos = self.target.pos
-        # ensure camera never goes of screen
-        scrn_size = self.game.config.resolution
-        wrld_size = 
-
-        left_edge = scrn_size[0]/2
-        right_edge = wrld_size[0] - scrn_size[0]/2
-        top_edge = scrn_size[1]/2
-        bottom_edge = wrld_size[1] - scrn_size[1]/2
-
         # adjust the camera pos
-        target_pos_delta = [target_pos[i] - self.pos[i] for i in (0,1)]
-        self.pos = [round(self.pos[i] - 0.1*target_pos_delta[i]) for i in (0,1)]
+        target_pos = vec2(self.target.pos)
+        target_pos_delta = target_pos - self.pos
+        self.pos = self.pos - 0.1*target_pos_delta
+
+        # ensure camera never goes of screen
+        unscaled_scrn_size = vec2(self.game.config.resolution)/ self.zoom
+        wrld_size = self.game.level.maze.bsize
+
+        left_edge = unscaled_scrn_size.x/2
+        right_edge = wrld_size.x - unscaled_scrn_size.x/2
+        top_edge = unscaled_scrn_size.y/2
+        bottom_edge = wrld_size.y - unscaled_scrn_size.y/2
+
+        self.pos.x = min(max(left_edge, self.pos.x), right_edge)
+        self.pos.y = min(max(top_edge, self.pos.y), bottom_edge)
 
     def wrld_2_scrn_coord(self, wrld_coord):
         """takes a world space coordinate and converts it to screenspace"""
-        scrn_size = self.game.config.resolution
+        scrn_size = vec2(self.game.config.resolution)
+
         # ensures that the cameras position ends up at the centre of the screen
-        ss_coord = [wrld_coord[i] + scrn_size[i]/2 + self.pos for i in (0,1)]
+        scaled_wrld_coord = vec2(wrld_coord) * self.zoom
+        scaled_pos = self.pos * self.zoom
+        ss_coord = scaled_wrld_coord + scrn_size/2 - scaled_pos
         return ss_coord

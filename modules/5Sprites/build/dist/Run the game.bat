@@ -1,0 +1,1 @@
+"%cd%/Sprites Host/Sprites Host.exe"

@@ -223,4 +223,4 @@
     <Subtexture name="stairU dark grey" x="204" y="435" width="16" height="24" />
     <Subtexture name="rampB dark grey" x="221" y="435" width="16" height="24" />
     <Subtexture name="rampU dark grey" x="238" y="435" width="16" height="24" />
-<TextureAtlas>
+</TextureAtlas>

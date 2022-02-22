@@ -1,0 +1,10 @@
+<TextureAtlas ImagePath="exit.png">
+    <Subtexture name="exit_open" x="0" y="0" width="16" height="24" />
+    <Subtexture name="exit_locked0" x="16" y="0" width="16" height="24" />
+    <Subtexture name="exit_locked1" x="32" y="0" width="16" height="24" />
+    <Subtexture name="exit_locked2" x="48" y="0" width="16" height="24" />
+    <Subtexture name="exit_locked3" x="0" y="24" width="16" height="24" />
+    <Subtexture name="exit_locked4" x="16" y="24" width="16" height="24" />
+    <Subtexture name="exit_locked5" x="32" y="24" width="16" height="24" />
+    <Subtexture name="exit_locked6" x="48" y="24" width="16" height="24" />
+</TextureAtlas>

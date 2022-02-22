@@ -1,7 +1,9 @@
 import pygame as pg
 import random as rng
-import Sprites_dummy as Sprites
+import Sprites as sprites
 
+def check_collidable(sprite):
+        return  type(sprite).__name__ in ["Wall", "Block", "Gateway", "Exit"]
 
 class Maze():
     def __init__(self, game, msize, seed):
@@ -11,7 +13,7 @@ class Maze():
         self.seed = seed
 
         # initialise sprite groups
-        self.all_sprites = pg.sprite.Group()
+        self.all_sprites = pg.sprite.LayeredUpdates()
         self.maze_walls = pg.sprite.Group()
         self.gateways = pg.sprite.Group()
         self.blocks = pg.sprite.Group()
@@ -19,20 +21,19 @@ class Maze():
         self.checkpoints = pg.sprite.Group()
         self.keys = pg.sprite.Group()
 
+    def setup(self):
+        """initialises the self dependent aspects of the maze:
+            sprite generation is dependent on this wall object aready having
+            been constructed"""
         # initialise RNG
         rng.seed(self.seed)
 
         # generate maze layout
         self.generate_layout()
 
-        # converts board coords to pixel coords
-        self.pos_convert=lambda pos: \
-                                [pos[0] * self.game.config.walls_width_px,
-                                 pos[1] * self.game.config.walls_height_px ]
-
         # convert layout to wall sprites
         def wall_gen(pos):
-            return Sprites.Wall(self.game, self.pos_convert(pos))
+            return sprites.Wall(self.game, pos)
         self.layout_to_board(wall_gen)
 
         # find start to end path
@@ -162,7 +163,7 @@ class Maze():
 
         # generate end
         self.end = [bsize[0]-1, bsize[1]-2]
-        self.exit = Sprites.Exit(self.game, self.pos_convert(self.end))
+        self.exit = sprites.Exit(self.game, self.end)
         self.all_sprites.add(self.exit)
         # place exit in board
         self.board[-2][-1] = self.exit
@@ -192,8 +193,7 @@ class Maze():
             remaining_colours.remove(block_colour)
             allowed_colours.append(block_colour)
 
-            block_pos = self.pos_convert(branch_node)
-            block = Sprites.Block(self.game, block_pos, block_colour)
+            block = sprites.Block(self.game, branch_node, block_colour)
             self.board[branch_node[1]][branch_node[0]] = block
             self.all_sprites.add(block)
             self.blocks.add(block)
@@ -203,8 +203,7 @@ class Maze():
                 gateway_colour = rng.choice(allowed_colours)
                 allowed_colours.remove(gateway_colour)
 
-                gw_pos = self.pos_convert(next_node)
-                gateway = Sprites.Gateway(self.game, gw_pos, gateway_colour)
+                gateway = sprites.Gateway(self.game, next_node, gateway_colour)
                 self.board[next_node[1]][next_node[0]] = gateway
                 self.all_sprites.add(gateway)
                 self.gateways.add(gateway)
@@ -222,7 +221,7 @@ class Maze():
             while self.board[pos[1]][pos[0]] != False:
                 pos = self.random_board_spot()
 
-            key = Sprites.Key(self.game, self.pos_convert(pos))
+            key = sprites.Key(self.game, pos)
             self.board[pos[1]][pos[0]] = key
             self.all_sprites.add(key)
             self.keys.add(key)
@@ -233,7 +232,7 @@ class Maze():
             while self.board[pos[1]][pos[0]] != False:
                 pos = self.random_board_spot()
 
-            checkpoint = Sprites.Checkpoint(self.game, self.pos_convert(pos))
+            checkpoint = sprites.Checkpoint(self.game, pos)
             self.board[pos[1]][pos[0]] = checkpoint
             self.all_sprites.add(checkpoint)
             self.checkpoints.add(checkpoint)
@@ -244,7 +243,7 @@ class Maze():
             while self.board[pos[1]][pos[0]] != False:
                 pos = self.random_board_spot()
 
-            enemy = Sprites.Enemy(self.game, self.pos_convert(pos))
+            enemy = sprites.Enemy(self.game, pos)
             self.board[pos[1]][pos[0]] = enemy
             self.all_sprites.add(enemy)
             self.enemies.add(enemy)
@@ -253,8 +252,12 @@ class Maze():
         """returns (list) path from start to end"""
         # dijkstra's algorithm
 
+        # trivial path
+        if start == end:
+            return [start]
+
         # place start node in nodes to search
-        nodes_to_search = [start]
+        nodes_to_search = [tuple(start)]
         known_nodes = {tuple(start): False}
 
         while len(nodes_to_search) > 0:
@@ -263,7 +266,7 @@ class Maze():
             for offset in [(0,-1), (0,1), (1,0), (-1,0)]:
                 neighbour = tuple([current_node_pos[i] + offset[i] for i in (0,1)])
                 # check neighbour is a wall
-                if self.board[neighbour[1]][neighbour[0]] != False:
+                if check_collidable(self.board[neighbour[1]][neighbour[0]]):
                     continue
 
                 # check neighbour has already been searched
@@ -277,15 +280,21 @@ class Maze():
         # use known nodes to construct a path from end to start
         end_to_start = []
         current_node = tuple(end)
-        while known_nodes[tuple(current_node)] != False:
-            end_to_start.append(current_node)
-            current_node = known_nodes[current_node]
+        if tuple(current_node) in known_nodes.keys():
+            while known_nodes[tuple(current_node)] != False:
+                end_to_start.append(current_node)
+                current_node = known_nodes[current_node]
+            
+            end_to_start.append(start)
 
-        # reverse end_to_start to get start_to_end
-        return end_to_start[::-1]
+            # reverse end_to_start to get start_to_end
+            return end_to_start[::-1]
+        else:
+            return([end])
 
     def branch(self, start_node, known_nodes):
         """branches out from a start node to another node in the maze"""
+
         nodes_to_search = [start_node]
 
         while len(nodes_to_search) > 0:
@@ -296,7 +305,7 @@ class Maze():
                 neighbour = [current_node_pos[i] + offset[i] for i in (0,1)]
                 neighbour = tuple(neighbour)
                 # check neighbour is a wall
-                if self.board[neighbour[1]][neighbour[0]] != False:
+                if check_collidable(self.board[neighbour[1]][neighbour[0]]):
                     continue
 
                 # check neighbour has already been searched
@@ -314,4 +323,4 @@ class Maze():
 
     def random_board_spot(self):
         """returns (tuple) random point on the board"""
-        return [rng.randint(0, self.msize[i]*2-1) for i in [0,1]]
+        return [rng.randint(0, self.bsize[i]-1) for i in [0,1]]

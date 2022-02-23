@@ -7,10 +7,10 @@
 
 
         {
-            "name": "Python:menu sprites host",
+            "name": "Python:game",
             "type": "python",
             "request": "launch",
-            "program": "C:\\Users\\alexl\\school\\A Levels\\Computer Science\\H446-programming-project\\modules\\6Menu Sprites\\Menu_Sprites Host.py",
+            "program": "C:\\Users\\alexl\\school\\A Levels\\Computer Science\\H446-programming-project\\modules\\7Menu System\\Main.py",
             "console": "integratedTerminal"
         },
 

@@ -1,0 +1,226 @@
+<TextureAtlas ImagePath="dawnblocker_ortho.png">
+    <Subtexture name="block light blue" x="4" y="12" width="16" height="24" />
+    <Subtexture name="crate light blue" x="21" y="12" width="16" height="24" />
+    <Subtexture name="brick light blue" x="38" y="12" width="16" height="24" />
+    <Subtexture name="stairL light blue" x="55" y="12" width="16" height="24" />
+    <Subtexture name="stairR light blue" x="72" y="12" width="16" height="24" />
+    <Subtexture name="rampL light blue" x="89" y="12" width="16" height="24" />
+    <Subtexture name="rampR light blue" x="106" y="12" width="16" height="24" />
+    <Subtexture name="lock light blue" x="4" y="43" width="16" height="24" />
+    <Subtexture name="pad light blue" x="21" y="43" width="16" height="24" />
+    <Subtexture name="key light blue" x="38" y="43" width="16" height="24" />
+    <Subtexture name="stairB light blue" x="55" y="43" width="16" height="24" />
+    <Subtexture name="stairU light blue" x="72" y="43" width="16" height="24" />
+    <Subtexture name="rampB light blue" x="89" y="43" width="16" height="24" />
+    <Subtexture name="rampU light blue" x="106" y="43" width="16" height="24" />
+    <Subtexture name="block light red" x="136" y="12" width="16" height="24" />
+    <Subtexture name="crate light red" x="153" y="12" width="16" height="24" />
+    <Subtexture name="brick light red" x="170" y="12" width="16" height="24" />
+    <Subtexture name="stairL light red" x="187" y="12" width="16" height="24" />
+    <Subtexture name="stairR light red" x="204" y="12" width="16" height="24" />
+    <Subtexture name="rampL light red" x="221" y="12" width="16" height="24" />
+    <Subtexture name="rampR light red" x="238" y="12" width="16" height="24" />
+    <Subtexture name="lock light red" x="136" y="43" width="16" height="24" />
+    <Subtexture name="pad light red" x="153" y="43" width="16" height="24" />
+    <Subtexture name="key light red" x="170" y="43" width="16" height="24" />
+    <Subtexture name="stairB light red" x="187" y="43" width="16" height="24" />
+    <Subtexture name="stairU light red" x="204" y="43" width="16" height="24" />
+    <Subtexture name="rampB light red" x="221" y="43" width="16" height="24" />
+    <Subtexture name="rampU light red" x="238" y="43" width="16" height="24" />
+    <Subtexture name="block dark green" x="4" y="68" width="16" height="24" />
+    <Subtexture name="crate dark green" x="21" y="68" width="16" height="24" />
+    <Subtexture name="brick dark green" x="38" y="68" width="16" height="24" />
+    <Subtexture name="stairL dark green" x="55" y="68" width="16" height="24" />
+    <Subtexture name="stairR dark green" x="72" y="68" width="16" height="24" />
+    <Subtexture name="rampL dark green" x="89" y="68" width="16" height="24" />
+    <Subtexture name="rampR dark green" x="106" y="68" width="16" height="24" />
+    <Subtexture name="lock dark green" x="4" y="99" width="16" height="24" />
+    <Subtexture name="pad dark green" x="21" y="99" width="16" height="24" />
+    <Subtexture name="key dark green" x="38" y="99" width="16" height="24" />
+    <Subtexture name="stairB dark green" x="55" y="99" width="16" height="24" />
+    <Subtexture name="stairU dark green" x="72" y="99" width="16" height="24" />
+    <Subtexture name="rampB dark green" x="89" y="99" width="16" height="24" />
+    <Subtexture name="rampU dark green" x="106" y="99" width="16" height="24" />
+    <Subtexture name="block magenta" x="136" y="68" width="16" height="24" />
+    <Subtexture name="crate magenta" x="153" y="68" width="16" height="24" />
+    <Subtexture name="brick magenta" x="170" y="68" width="16" height="24" />
+    <Subtexture name="stairL magenta" x="187" y="68" width="16" height="24" />
+    <Subtexture name="stairR magenta" x="204" y="68" width="16" height="24" />
+    <Subtexture name="rampL magenta" x="221" y="68" width="16" height="24" />
+    <Subtexture name="rampR magenta" x="238" y="68" width="16" height="24" />
+    <Subtexture name="lock magenta" x="136" y="99" width="16" height="24" />
+    <Subtexture name="pad magenta" x="153" y="99" width="16" height="24" />
+    <Subtexture name="key magenta" x="170" y="99" width="16" height="24" />
+    <Subtexture name="stairB magenta" x="187" y="99" width="16" height="24" />
+    <Subtexture name="stairU magenta" x="204" y="99" width="16" height="24" />
+    <Subtexture name="rampB magenta" x="221" y="99" width="16" height="24" />
+    <Subtexture name="rampU magenta" x="238" y="99" width="16" height="24" />
+    <Subtexture name="block light green" x="4" y="124" width="16" height="24" />
+    <Subtexture name="crate light green" x="21" y="124" width="16" height="24" />
+    <Subtexture name="brick light green" x="38" y="124" width="16" height="24" />
+    <Subtexture name="stairL light green" x="55" y="124" width="16" height="24" />
+    <Subtexture name="stairR light green" x="72" y="124" width="16" height="24" />
+    <Subtexture name="rampL light green" x="89" y="124" width="16" height="24" />
+    <Subtexture name="rampR light green" x="106" y="124" width="16" height="24" />
+    <Subtexture name="lock light green" x="4" y="155" width="16" height="24" />
+    <Subtexture name="pad light green" x="21" y="155" width="16" height="24" />
+    <Subtexture name="key light green" x="38" y="155" width="16" height="24" />
+    <Subtexture name="stairB light green" x="55" y="155" width="16" height="24" />
+    <Subtexture name="stairU light green" x="72" y="155" width="16" height="24" />
+    <Subtexture name="rampB light green" x="89" y="155" width="16" height="24" />
+    <Subtexture name="rampU light green" x="106" y="155" width="16" height="24" />
+    <Subtexture name="block pink" x="136" y="124" width="16" height="24" />
+    <Subtexture name="crate pink" x="153" y="124" width="16" height="24" />
+    <Subtexture name="brick pink" x="170" y="124" width="16" height="24" />
+    <Subtexture name="stairL pink" x="187" y="124" width="16" height="24" />
+    <Subtexture name="stairR pink" x="204" y="124" width="16" height="24" />
+    <Subtexture name="rampL pink" x="221" y="124" width="16" height="24" />
+    <Subtexture name="rampR pink" x="238" y="124" width="16" height="24" />
+    <Subtexture name="lock pink" x="136" y="155" width="16" height="24" />
+    <Subtexture name="pad pink" x="153" y="155" width="16" height="24" />
+    <Subtexture name="key pink" x="170" y="155" width="16" height="24" />
+    <Subtexture name="stairB pink" x="187" y="155" width="16" height="24" />
+    <Subtexture name="stairU pink" x="204" y="155" width="16" height="24" />
+    <Subtexture name="rampB pink" x="221" y="155" width="16" height="24" />
+    <Subtexture name="rampU pink" x="238" y="155" width="16" height="24" />
+    <Subtexture name="block lime" x="4" y="180" width="16" height="24" />
+    <Subtexture name="crate lime" x="21" y="180" width="16" height="24" />
+    <Subtexture name="brick lime" x="38" y="180" width="16" height="24" />
+    <Subtexture name="stairL lime" x="55" y="180" width="16" height="24" />
+    <Subtexture name="stairR lime" x="72" y="180" width="16" height="24" />
+    <Subtexture name="rampL lime" x="89" y="180" width="16" height="24" />
+    <Subtexture name="rampR lime" x="106" y="180" width="16" height="24" />
+    <Subtexture name="lock lime" x="4" y="211" width="16" height="24" />
+    <Subtexture name="pad lime" x="21" y="211" width="16" height="24" />
+    <Subtexture name="key lime" x="38" y="211" width="16" height="24" />
+    <Subtexture name="stairB lime" x="55" y="211" width="16" height="24" />
+    <Subtexture name="stairU lime" x="72" y="211" width="16" height="24" />
+    <Subtexture name="rampB lime" x="89" y="211" width="16" height="24" />
+    <Subtexture name="rampU lime" x="106" y="211" width="16" height="24" />
+    <Subtexture name="block purple" x="136" y="180" width="16" height="24" />
+    <Subtexture name="crate purple" x="153" y="180" width="16" height="24" />
+    <Subtexture name="brick purple" x="170" y="180" width="16" height="24" />
+    <Subtexture name="stairL purple" x="187" y="180" width="16" height="24" />
+    <Subtexture name="stairR purple" x="204" y="180" width="16" height="24" />
+    <Subtexture name="rampL purple" x="221" y="180" width="16" height="24" />
+    <Subtexture name="rampR purple" x="238" y="180" width="16" height="24" />
+    <Subtexture name="lock purple" x="136" y="211" width="16" height="24" />
+    <Subtexture name="pad purple" x="153" y="211" width="16" height="24" />
+    <Subtexture name="key purple" x="170" y="211" width="16" height="24" />
+    <Subtexture name="stairB purple" x="187" y="211" width="16" height="24" />
+    <Subtexture name="stairU purple" x="204" y="211" width="16" height="24" />
+    <Subtexture name="rampB purple" x="221" y="211" width="16" height="24" />
+    <Subtexture name="rampU purple" x="238" y="211" width="16" height="24" />
+    <Subtexture name="block yellow" x="4" y="236" width="16" height="24" />
+    <Subtexture name="crate yellow" x="21" y="236" width="16" height="24" />
+    <Subtexture name="brick yellow" x="38" y="236" width="16" height="24" />
+    <Subtexture name="stairL yellow" x="55" y="236" width="16" height="24" />
+    <Subtexture name="stairR yellow" x="72" y="236" width="16" height="24" />
+    <Subtexture name="rampL yellow" x="89" y="236" width="16" height="24" />
+    <Subtexture name="rampR yellow" x="106" y="236" width="16" height="24" />
+    <Subtexture name="lock yellow" x="4" y="267" width="16" height="24" />
+    <Subtexture name="pad yellow" x="21" y="267" width="16" height="24" />
+    <Subtexture name="key yellow" x="38" y="267" width="16" height="24" />
+    <Subtexture name="stairB yellow" x="55" y="267" width="16" height="24" />
+    <Subtexture name="stairU yellow" x="72" y="267" width="16" height="24" />
+    <Subtexture name="rampB yellow" x="89" y="267" width="16" height="24" />
+    <Subtexture name="rampU yellow" x="106" y="267" width="16" height="24" />
+    <Subtexture name="block dark blue" x="136" y="236" width="16" height="24" />
+    <Subtexture name="crate dark blue" x="153" y="236" width="16" height="24" />
+    <Subtexture name="brick dark blue" x="170" y="236" width="16" height="24" />
+    <Subtexture name="stairL dark blue" x="187" y="236" width="16" height="24" />
+    <Subtexture name="stairR dark blue" x="204" y="236" width="16" height="24" />
+    <Subtexture name="rampL dark blue" x="221" y="236" width="16" height="24" />
+    <Subtexture name="rampR dark blue" x="238" y="236" width="16" height="24" />
+    <Subtexture name="lock dark blue" x="136" y="267" width="16" height="24" />
+    <Subtexture name="pad dark blue" x="153" y="267" width="16" height="24" />
+    <Subtexture name="key dark blue" x="170" y="267" width="16" height="24" />
+    <Subtexture name="stairB dark blue" x="187" y="267" width="16" height="24" />
+    <Subtexture name="stairU dark blue" x="204" y="267" width="16" height="24" />
+    <Subtexture name="rampB dark blue" x="221" y="267" width="16" height="24" />
+    <Subtexture name="rampU dark blue" x="238" y="267" width="16" height="24" />
+    <Subtexture name="block orange" x="4" y="292" width="16" height="24" />
+    <Subtexture name="crate orange" x="21" y="292" width="16" height="24" />
+    <Subtexture name="brick orange" x="38" y="292" width="16" height="24" />
+    <Subtexture name="stairL orange" x="55" y="292" width="16" height="24" />
+    <Subtexture name="stairR orange" x="72" y="292" width="16" height="24" />
+    <Subtexture name="rampL orange" x="89" y="292" width="16" height="24" />
+    <Subtexture name="rampR orange" x="106" y="292" width="16" height="24" />
+    <Subtexture name="lock orange" x="4" y="323" width="16" height="24" />
+    <Subtexture name="pad orange" x="21" y="323" width="16" height="24" />
+    <Subtexture name="key orange" x="38" y="323" width="16" height="24" />
+    <Subtexture name="stairB orange" x="55" y="323" width="16" height="24" />
+    <Subtexture name="stairU orange" x="72" y="323" width="16" height="24" />
+    <Subtexture name="rampB orange" x="89" y="323" width="16" height="24" />
+    <Subtexture name="rampU orange" x="106" y="323" width="16" height="24" />
+    <Subtexture name="block cream" x="136" y="292" width="16" height="24" />
+    <Subtexture name="crate cream" x="153" y="292" width="16" height="24" />
+    <Subtexture name="brick cream" x="170" y="292" width="16" height="24" />
+    <Subtexture name="stairL cream" x="187" y="292" width="16" height="24" />
+    <Subtexture name="stairR cream" x="204" y="292" width="16" height="24" />
+    <Subtexture name="rampL cream" x="221" y="292" width="16" height="24" />
+    <Subtexture name="rampR cream" x="238" y="292" width="16" height="24" />
+    <Subtexture name="lock cream" x="136" y="323" width="16" height="24" />
+    <Subtexture name="pad cream" x="153" y="323" width="16" height="24" />
+    <Subtexture name="key cream" x="170" y="323" width="16" height="24" />
+    <Subtexture name="stairB cream" x="187" y="323" width="16" height="24" />
+    <Subtexture name="stairU cream" x="204" y="323" width="16" height="24" />
+    <Subtexture name="rampB cream" x="221" y="323" width="16" height="24" />
+    <Subtexture name="rampU cream" x="238" y="323" width="16" height="24" />
+    <Subtexture name="block brown" x="4" y="348" width="16" height="24" />
+    <Subtexture name="crate brown" x="21" y="348" width="16" height="24" />
+    <Subtexture name="brick brown" x="38" y="348" width="16" height="24" />
+    <Subtexture name="stairL brown" x="55" y="348" width="16" height="24" />
+    <Subtexture name="stairR brown" x="72" y="348" width="16" height="24" />
+    <Subtexture name="rampL brown" x="89" y="348" width="16" height="24" />
+    <Subtexture name="rampR brown" x="106" y="348" width="16" height="24" />
+    <Subtexture name="lock brown" x="4" y="379" width="16" height="24" />
+    <Subtexture name="pad brown" x="21" y="379" width="16" height="24" />
+    <Subtexture name="key brown" x="38" y="379" width="16" height="24" />
+    <Subtexture name="stairB brown" x="55" y="379" width="16" height="24" />
+    <Subtexture name="stairU brown" x="72" y="379" width="16" height="24" />
+    <Subtexture name="rampB brown" x="89" y="379" width="16" height="24" />
+    <Subtexture name="rampU brown" x="106" y="379" width="16" height="24" />
+    <Subtexture name="block light grey" x="136" y="348" width="16" height="24" />
+    <Subtexture name="crate light grey" x="153" y="348" width="16" height="24" />
+    <Subtexture name="brick light grey" x="170" y="348" width="16" height="24" />
+    <Subtexture name="stairL light grey" x="187" y="348" width="16" height="24" />
+    <Subtexture name="stairR light grey" x="204" y="348" width="16" height="24" />
+    <Subtexture name="rampL light grey" x="221" y="348" width="16" height="24" />
+    <Subtexture name="rampR light grey" x="238" y="348" width="16" height="24" />
+    <Subtexture name="lock light grey" x="136" y="379" width="16" height="24" />
+    <Subtexture name="pad light grey" x="153" y="379" width="16" height="24" />
+    <Subtexture name="key light grey" x="170" y="379" width="16" height="24" />
+    <Subtexture name="stairB light grey" x="187" y="379" width="16" height="24" />
+    <Subtexture name="stairU light grey" x="204" y="379" width="16" height="24" />
+    <Subtexture name="rampB light grey" x="221" y="379" width="16" height="24" />
+    <Subtexture name="rampU light grey" x="238" y="379" width="16" height="24" />
+    <Subtexture name="block dark red" x="4" y="404" width="16" height="24" />
+    <Subtexture name="crate dark red" x="21" y="404" width="16" height="24" />
+    <Subtexture name="brick dark red" x="38" y="404" width="16" height="24" />
+    <Subtexture name="stairL dark red" x="55" y="404" width="16" height="24" />
+    <Subtexture name="stairR dark red" x="72" y="404" width="16" height="24" />
+    <Subtexture name="rampL dark red" x="89" y="404" width="16" height="24" />
+    <Subtexture name="rampR dark red" x="106" y="404" width="16" height="24" />
+    <Subtexture name="lock dark red" x="4" y="435" width="16" height="24" />
+    <Subtexture name="pad dark red" x="21" y="435" width="16" height="24" />
+    <Subtexture name="key dark red" x="38" y="435" width="16" height="24" />
+    <Subtexture name="stairB dark red" x="55" y="435" width="16" height="24" />
+    <Subtexture name="stairU dark red" x="72" y="435" width="16" height="24" />
+    <Subtexture name="rampB dark red" x="89" y="435" width="16" height="24" />
+    <Subtexture name="rampU dark red" x="106" y="435" width="16" height="24" />
+    <Subtexture name="block dark grey" x="136" y="404" width="16" height="24" />
+    <Subtexture name="crate dark grey" x="153" y="404" width="16" height="24" />
+    <Subtexture name="brick dark grey" x="170" y="404" width="16" height="24" />
+    <Subtexture name="stairL dark grey" x="187" y="404" width="16" height="24" />
+    <Subtexture name="stairR dark grey" x="204" y="404" width="16" height="24" />
+    <Subtexture name="rampL dark grey" x="221" y="404" width="16" height="24" />
+    <Subtexture name="rampR dark grey" x="238" y="404" width="16" height="24" />
+    <Subtexture name="lock dark grey" x="136" y="435" width="16" height="24" />
+    <Subtexture name="pad dark grey" x="153" y="435" width="16" height="24" />
+    <Subtexture name="key dark grey" x="170" y="435" width="16" height="24" />
+    <Subtexture name="stairB dark grey" x="187" y="435" width="16" height="24" />
+    <Subtexture name="stairU dark grey" x="204" y="435" width="16" height="24" />
+    <Subtexture name="rampB dark grey" x="221" y="435" width="16" height="24" />
+    <Subtexture name="rampU dark grey" x="238" y="435" width="16" height="24" />
+</TextureAtlas>

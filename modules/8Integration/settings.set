@@ -1,7 +1,7 @@
 resolution|[1366, 768]
-rescaleable|False
+rescaleable|True
 fullscreen|False
-vsync|True
+vsync|False
 camera_zoom|10
 key_frame_count|10
 key_displacement|4

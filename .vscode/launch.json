@@ -10,7 +10,7 @@
             "name": "Python:game",
             "type": "python",
             "request": "launch",
-            "program": "C:\\Users\\alexl\\school\\A Levels\\Computer Science\\H446-programming-project\\modules\\8Integration\\Main.py",
+            "program": "C:\\Users\\alexl\\school\\computer science\\H446-programming-project\\modules\\8Integration\\Main.py",
             "console": "integratedTerminal"
         },
 

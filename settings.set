@@ -1,5 +1,5 @@
-resolution|[1920, 1080]
-rescaleable|True
+resolution|[1366, 768]
+rescaleable|False
 fullscreen|False
 vsync|False
 camera_zoom|10

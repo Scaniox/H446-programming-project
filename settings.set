@@ -1,12 +1,12 @@
-resolution|[1366, 768]
-rescaleable|False
-fullscreen|False
+resolution|(1920, 1080)
+rescaleable|True
+fullscreen|True
 vsync|False
 camera_zoom|10
 key_frame_count|10
 key_displacement|4
 game_vol|1
-music_vol|0.5478971962616822
+music_vol|0.2857142857142857
 player_step_snd_delay|300
 text_colour|(255, 255, 255)
 text_font_name|'PixeloidMono-1G8ae.ttf'
